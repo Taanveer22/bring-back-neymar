@@ -1,11 +1,11 @@
 const Stat = ({ petitionCount }) => {
   const stats = [
-    { id: 1, value: '128', label: 'Matches' },
-    { id: 2, value: '79', label: 'Goals' },
-    { id: 3, value: '59', label: 'Assists' },
-    { id: 4, value: '8', label: 'WC Goals' },
-    { id: 5, value: '5', label: 'CA Goals' },
-    { id: 6, value: '7', label: 'Oly Goals' },
+    { id: 1, value: 128, label: 'Matches' },
+    { id: 2, value: 79, label: 'Goals' },
+    { id: 3, value: 59, label: 'Assists' },
+    { id: 4, value: 8, label: 'WC Goals' },
+    { id: 5, value: 5, label: 'CA Goals' },
+    { id: 6, value: 7, label: 'Oly Goals' },
   ];
 
   return (
@@ -18,7 +18,7 @@ const Stat = ({ petitionCount }) => {
           {/* COUNTER */}
           <div className="mb-10 text-center">
             <h1 className="text-5xl font-black text-yellow-400 sm:text-6xl">
-              {petitionCount.toLocaleString()}
+              {Number(petitionCount || 0).toLocaleString()}
             </h1>
 
             <p className="mt-2 text-sm uppercase tracking-widest text-blue-200">

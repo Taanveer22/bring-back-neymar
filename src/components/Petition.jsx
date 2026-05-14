@@ -2,11 +2,9 @@ import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-const Petition = ({ onSuccess }) => {
-  // ======================================
-  // FORM STATE
-  // ======================================
+const BASE_URL = 'https://bring-back-neymar-2.vercel.app';
 
+const Petition = ({ onSuccess }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,10 +12,6 @@ const Petition = ({ onSuccess }) => {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-
-  // ======================================
-  // INPUT HANDLER
-  // ======================================
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,10 +22,6 @@ const Petition = ({ onSuccess }) => {
     }));
   };
 
-  // ======================================
-  // SUBMIT FORM
-  // ======================================
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,24 +29,29 @@ const Petition = ({ onSuccess }) => {
       setLoading(true);
       setMessage('');
 
-      const response = await axios.post(
-        'https://bring-back-neymar-2.vercel.app/api/petitions',
-        formData
-      );
+      const res = await axios.post(`${BASE_URL}/api/petitions`, formData);
 
-      // ✅ send data back to Home (React 19 safe pattern)
-      onSuccess?.(response.data.totalPetitions);
+      const total = res.data?.totalPetitions ?? 0;
+
+      // update parent
+      onSuccess?.(total);
 
       setMessage('Petition signed successfully!');
       toast.success('Petition signed successfully');
 
-      setFormData({
-        name: '',
-        email: '',
-      });
+      setFormData({ name: '', email: '' });
     } catch (error) {
-      setMessage(error.response?.data?.message || 'Something went wrong');
-      toast.error('You already signed the petition');
+      const msg = error.response?.data?.message || 'Something went wrong';
+
+      setMessage(msg);
+
+      if (error.response?.status === 400) {
+        toast.error(msg);
+      } else {
+        toast.error('Server error. Try again later');
+      }
+
+      console.log('Submit error:', error);
     } finally {
       setLoading(false);
     }
@@ -65,7 +60,6 @@ const Petition = ({ onSuccess }) => {
   return (
     <section className="w-full max-w-xl">
       <div className="rounded-3xl bg-blue-950 p-8 shadow-2xl sm:p-10">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-black text-white">Petition Form</h1>
 
@@ -74,9 +68,7 @@ const Petition = ({ onSuccess }) => {
           </p>
         </div>
 
-        {/* FORM */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* NAME */}
           <input
             type="text"
             name="name"
@@ -86,7 +78,6 @@ const Petition = ({ onSuccess }) => {
             className="h-12 w-full rounded-xl bg-blue-900 px-4 text-white outline-none focus:ring-2 focus:ring-yellow-400"
           />
 
-          {/* EMAIL */}
           <input
             type="email"
             name="email"
@@ -96,7 +87,6 @@ const Petition = ({ onSuccess }) => {
             className="h-12 w-full rounded-xl bg-blue-900 px-4 text-white outline-none focus:ring-2 focus:ring-yellow-400"
           />
 
-          {/* BUTTON */}
           <button
             disabled={loading}
             className="h-12 w-full rounded-xl bg-yellow-400 font-bold text-blue-950 transition hover:bg-yellow-300 disabled:opacity-50"
@@ -104,7 +94,6 @@ const Petition = ({ onSuccess }) => {
             {loading ? 'Signing...' : 'Sign Petition'}
           </button>
 
-          {/* MESSAGE */}
           {message && <p className="text-center text-sm text-white">{message}</p>}
         </form>
       </div>
