@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Banner from '../components/Banner';
-import Petition from '../components/Petition';
-import Stat from '../components/Stat';
+import FansCounter from '../components/FansCounter';
+import PetitionForm from '../components/PetitionForm';
+import Statistics from '../components/Statistics';
 
 // Backend server URL
 const BASE_URL = 'https://bring-back-neymar-2.vercel.app';
@@ -43,12 +44,16 @@ const Home = () => {
       </div>
 
       {/* Responsive layout for stats + petition form */}
-      <div className="flex flex-col items-center justify-between gap-12 lg:flex-row">
-        {/* Send petition count to Stat component */}
-        <Stat petitionCount={petitionCount} />
+      <div className="flex flex-col items-center justify-between gap-12 lg:flex-row mb-8 sm:mb-16">
+        {/* Send petition count to  component */}
+        <FansCounter petitionCount={petitionCount} />
 
         {/* Update count after successful petition */}
-        <Petition onSuccess={handleUpdateCount} />
+        <PetitionForm onSuccess={handleUpdateCount} />
+      </div>
+
+      <div className="">
+        <Statistics></Statistics>
       </div>
     </div>
   );

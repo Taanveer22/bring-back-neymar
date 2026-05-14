@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 const BASE_URL = 'https://bring-back-neymar-2.vercel.app';
 
-const Petition = ({ onSuccess }) => {
+const PetitionForm = ({ onSuccess }) => {
   // Store form input values
   const [formData, setFormData] = useState({
     name: '',
@@ -76,11 +76,11 @@ const Petition = ({ onSuccess }) => {
 
   return (
     <section className="w-full max-w-xl">
-      <div className="rounded-3xl bg-blue-950 p-8 shadow-2xl sm:p-10">
+      <div className="rounded-3xl bg-linear-to-br from-blue-950 via-blue-900 to-sky-700 p-8 shadow-2xl sm:p-10">
         <div className="mb-8">
           <h1 className="text-3xl font-black text-white">Petition Form</h1>
 
-          <p className="mt-2 text-sm text-blue-200">
+          <p className="mt-2 text-sm text-blue-100">
             Sign the petition to support Neymar’s return.
           </p>
         </div>
@@ -94,7 +94,7 @@ const Petition = ({ onSuccess }) => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Your Name"
-            className="h-12 w-full rounded-xl bg-blue-900 px-4 text-white outline-none focus:ring-2 focus:ring-yellow-400"
+            className="h-12 w-full rounded-xl border border-blue-400/20 bg-white/10 px-4 text-white placeholder:text-blue-100 outline-none backdrop-blur-sm focus:ring-2 focus:ring-yellow-400"
           />
 
           {/* Required email input */}
@@ -105,7 +105,7 @@ const Petition = ({ onSuccess }) => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Your Email"
-            className="h-12 w-full rounded-xl bg-blue-900 px-4 text-white outline-none focus:ring-2 focus:ring-yellow-400"
+            className="h-12 w-full rounded-xl border border-blue-400/20 bg-white/10 px-4 text-white placeholder:text-blue-100 outline-none backdrop-blur-sm focus:ring-2 focus:ring-yellow-400"
           />
 
           {/* Disable button while request is processing */}
@@ -124,4 +124,4 @@ const Petition = ({ onSuccess }) => {
   );
 };
 
-export default Petition;
+export default PetitionForm;
