@@ -2,18 +2,22 @@ import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-// 🔴 এখানে অবশ্যই আপনার এক্সপ্রেস ব্যাকএন্ডের সঠিক Vercel লিঙ্কটি দিবেন (ফ্রন্টএন্ড লিঙ্ক নয়)
 const BASE_URL = 'https://bring-back-neymar-2.vercel.app';
 
 const Petition = ({ onSuccess }) => {
+  // Store form input values
   const [formData, setFormData] = useState({
     name: '',
     email: '',
   });
 
+  // Loading state for button
   const [loading, setLoading] = useState(false);
+
+  // Success or error message
   const [message, setMessage] = useState('');
 
+  // Update input field dynamically
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -23,32 +27,40 @@ const Petition = ({ onSuccess }) => {
     }));
   };
 
+  // Handle form submit
   const handleSubmit = async (e) => {
+    // Prevent page reload
     e.preventDefault();
 
     try {
+      // Start loading + clear old message
       setLoading(true);
       setMessage('');
 
-      // ব্যাকএন্ডের credentials এর সাথে মিল রাখতে withCredentials যোগ করা ভালো
+      // Send form data to backend
       const res = await axios.post(`${BASE_URL}/api/petitions`, formData, {
         withCredentials: true,
       });
 
+      // Get updated total petitions
       const total = res.data?.totalPetitions ?? 0;
 
-      // update parent
+      // Send updated count to parent component
       onSuccess?.(total);
 
+      // Success UI + toast
       setMessage('Petition signed successfully!');
       toast.success('Petition signed successfully');
 
+      // Reset form fields
       setFormData({ name: '', email: '' });
     } catch (error) {
+      // Backend error message
       const msg = error.response?.data?.message || 'Something went wrong';
 
       setMessage(msg);
 
+      // Show different toast based on error type
       if (error.response?.status === 400) {
         toast.error(msg);
       } else {
@@ -57,6 +69,7 @@ const Petition = ({ onSuccess }) => {
 
       console.error('Submit error:', error);
     } finally {
+      // Stop loading in both success and error cases
       setLoading(false);
     }
   };
@@ -73,7 +86,7 @@ const Petition = ({ onSuccess }) => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* ✅ required যোগ করা হয়েছে */}
+          {/* Required name input */}
           <input
             type="text"
             name="name"
@@ -84,7 +97,7 @@ const Petition = ({ onSuccess }) => {
             className="h-12 w-full rounded-xl bg-blue-900 px-4 text-white outline-none focus:ring-2 focus:ring-yellow-400"
           />
 
-          {/* ✅ required যোগ করা হয়েছে */}
+          {/* Required email input */}
           <input
             type="email"
             name="email"
@@ -95,6 +108,7 @@ const Petition = ({ onSuccess }) => {
             className="h-12 w-full rounded-xl bg-blue-900 px-4 text-white outline-none focus:ring-2 focus:ring-yellow-400"
           />
 
+          {/* Disable button while request is processing */}
           <button
             disabled={loading}
             className="h-12 w-full rounded-xl bg-yellow-400 font-bold text-blue-950 transition hover:bg-yellow-300 disabled:opacity-50"
@@ -102,6 +116,7 @@ const Petition = ({ onSuccess }) => {
             {loading ? 'Signing...' : 'Sign Petition'}
           </button>
 
+          {/* Show message only when message exists */}
           {message && <p className="text-center text-sm text-white">{message}</p>}
         </form>
       </div>

@@ -4,20 +4,23 @@ import Banner from '../components/Banner';
 import Petition from '../components/Petition';
 import Stat from '../components/Stat';
 
-// 🔴 এখানে অবশ্যই আপনার ব্যাকএন্ডের সঠিক Vercel লিঙ্কটি দিবেন (ফ্রন্টএন্ডের লিঙ্ক নয়)
+// Backend server URL
 const BASE_URL = 'https://bring-back-neymar-2.vercel.app';
 
 const Home = () => {
+  // Store total petition count
   const [petitionCount, setPetitionCount] = useState(0);
 
+  // Run only once when component mounts
   useEffect(() => {
+    // Fetch current petition count from backend
     const fetchCount = async () => {
       try {
-        // credentials যুক্ত করা হলো ব্যাকএন্ডের সাথে মিল রাখার জন্য
         const res = await axios.get(`${BASE_URL}/api/petitions/count`, {
           withCredentials: true,
         });
 
+        // Update state with backend count
         setPetitionCount(res.data?.totalPetitions ?? 0);
       } catch (error) {
         console.error('Count fetch error:', error);
@@ -27,19 +30,24 @@ const Home = () => {
     fetchCount();
   }, []);
 
+  // Receive updated count from Petition component
   const handleUpdateCount = (newCount) => {
     setPetitionCount(newCount ?? 0);
   };
 
   return (
     <div>
+      {/* Hero banner section */}
       <div className="mb-8 sm:mb-16">
         <Banner />
       </div>
 
+      {/* Responsive layout for stats + petition form */}
       <div className="flex flex-col items-center justify-between gap-12 lg:flex-row">
+        {/* Send petition count to Stat component */}
         <Stat petitionCount={petitionCount} />
-        {/* নিশ্চিত করুন Petition কম্পোনেন্টের ভেতরেও সঠিক BASE_URL ব্যবহার করা হয়েছে */}
+
+        {/* Update count after successful petition */}
         <Petition onSuccess={handleUpdateCount} />
       </div>
     </div>
