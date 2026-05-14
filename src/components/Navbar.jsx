@@ -53,7 +53,7 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
           <div className="navbar-end hidden sm:flex">
-            <button className="btn btn-ghost text-xl"> # Mission Hexa 2026</button>
+            <button className="btn btn-ghost text-xl"> Mission Hexa 2026</button>
           </div>
         </div>
 
