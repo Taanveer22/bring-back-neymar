@@ -20,7 +20,9 @@ const Home = () => {
 
     (async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/petitions/count');
+        const response = await axios.get(
+          'https://bring-back-neymar-2.vercel.app/api/petitions/count'
+        );
 
         if (!ignore) {
           setPetitionCount(response.data.totalPetitions);

@@ -39,7 +39,10 @@ const Petition = ({ onSuccess }) => {
       setLoading(true);
       setMessage('');
 
-      const response = await axios.post('http://localhost:5000/api/petitions', formData);
+      const response = await axios.post(
+        'https://bring-back-neymar-2.vercel.app/api/petitions',
+        formData
+      );
 
       // ✅ send data back to Home (React 19 safe pattern)
       onSuccess?.(response.data.totalPetitions);
