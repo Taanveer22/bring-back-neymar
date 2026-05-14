@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
+// 🔴 এখানে অবশ্যই আপনার এক্সপ্রেস ব্যাকএন্ডের সঠিক Vercel লিঙ্কটি দিবেন (ফ্রন্টএন্ড লিঙ্ক নয়)
 const BASE_URL = 'https://bring-back-neymar-2.vercel.app';
 
 const Petition = ({ onSuccess }) => {
@@ -29,7 +30,10 @@ const Petition = ({ onSuccess }) => {
       setLoading(true);
       setMessage('');
 
-      const res = await axios.post(`${BASE_URL}/api/petitions`, formData);
+      // ব্যাকএন্ডের credentials এর সাথে মিল রাখতে withCredentials যোগ করা ভালো
+      const res = await axios.post(`${BASE_URL}/api/petitions`, formData, {
+        withCredentials: true,
+      });
 
       const total = res.data?.totalPetitions ?? 0;
 
@@ -51,7 +55,7 @@ const Petition = ({ onSuccess }) => {
         toast.error('Server error. Try again later');
       }
 
-      console.log('Submit error:', error);
+      console.error('Submit error:', error);
     } finally {
       setLoading(false);
     }
@@ -69,18 +73,22 @@ const Petition = ({ onSuccess }) => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* ✅ required যোগ করা হয়েছে */}
           <input
             type="text"
             name="name"
+            required
             value={formData.name}
             onChange={handleChange}
             placeholder="Your Name"
             className="h-12 w-full rounded-xl bg-blue-900 px-4 text-white outline-none focus:ring-2 focus:ring-yellow-400"
           />
 
+          {/* ✅ required যোগ করা হয়েছে */}
           <input
             type="email"
             name="email"
+            required
             value={formData.email}
             onChange={handleChange}
             placeholder="Your Email"
