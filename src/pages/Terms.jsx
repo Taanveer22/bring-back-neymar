@@ -195,10 +195,6 @@ const Terms = () => {
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Hero */}
         <div className="mb-14 text-center sm:mb-16">
-          <div className="mb-5 inline-flex items-center rounded-full border border-blue-400/20 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-widest text-blue-100 backdrop-blur-md sm:text-sm">
-            Neymar Matters Rules
-          </div>
-
           <h1 className="mb-6 text-4xl font-black uppercase leading-none text-white sm:text-5xl md:text-6xl lg:text-7xl">
             Terms & Conditions
           </h1>

@@ -148,10 +148,6 @@ const PrivacyPolicy = () => {
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Hero */}
         <div className="mb-14 text-center sm:mb-16 lg:mb-20">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-yellow-300 sm:text-sm">
-            Neymar Matters
-          </p>
-
           <h1 className="text-4xl font-black uppercase leading-none text-white sm:text-5xl md:text-6xl lg:text-7xl">
             Privacy Policy
           </h1>
