@@ -1,4 +1,7 @@
+import axios from 'axios';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import BASE_URL from '../api/BaseUrl';
 
 const inquiryTypes = ['General Inquiries', 'Partnerships', 'Privacy Concerns', 'Technical Support'];
 
@@ -22,8 +25,27 @@ const Contact = () => {
   };
 
   // Handle form submit
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!checked) {
+      return toast.error('Please accept the agreement');
+    }
+
+    try {
+      const response = await axios.post(`${BASE_URL}/api/contact`, form);
+      console.log(response.data);
+      if (response.data) {
+        toast.success('Message Sent');
+      }
+      setForm({
+        name: '',
+        email: '',
+        message: '',
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
     console.log(form);
   };

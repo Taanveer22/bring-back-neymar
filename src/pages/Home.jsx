@@ -1,12 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import BASE_URL from '../api/BaseUrl';
 import Banner from '../components/Banner';
 import FansCounter from '../components/FansCounter';
 import PetitionForm from '../components/PetitionForm';
 import Statistics from '../components/Statistics';
-
-// Backend server URL
-const BASE_URL = 'https://bring-back-neymar-2.vercel.app';
 
 const Home = () => {
   // Store total petition count

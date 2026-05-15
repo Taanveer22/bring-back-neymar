@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-
-const BASE_URL = 'https://bring-back-neymar-2.vercel.app';
+import BASE_URL from '../api/BaseUrl';
 
 const PetitionForm = ({ onSuccess }) => {
   // Store form input values
