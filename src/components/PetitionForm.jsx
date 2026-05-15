@@ -4,62 +4,43 @@ import { toast } from 'react-toastify';
 import BASE_URL from '../api/BaseUrl';
 
 const PetitionForm = ({ onSuccess }) => {
-  // Store form input values
   const [formData, setFormData] = useState({
     name: '',
     email: '',
   });
 
-  // Loading state for button
   const [loading, setLoading] = useState(false);
-
-  // Success or error message
   const [message, setMessage] = useState('');
 
-  // Update input field dynamically
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  // Handle form submit
   const handleSubmit = async (e) => {
-    // Prevent page reload
     e.preventDefault();
 
     try {
-      // Start loading + clear old message
       setLoading(true);
       setMessage('');
 
-      // Send form data to backend
       const res = await axios.post(`${BASE_URL}/api/petitions`, formData, {
         withCredentials: true,
       });
 
-      // Get updated total petitions
       const total = res.data?.totalPetitions ?? 0;
-
-      // Send updated count to parent component
       onSuccess?.(total);
 
-      // Success UI + toast
       setMessage('Petition signed successfully!');
       toast.success('Petition signed successfully');
-
-      // Reset form fields
       setFormData({ name: '', email: '' });
     } catch (error) {
-      // Backend error message
       const msg = error.response?.data?.message || 'Something went wrong';
-
       setMessage(msg);
 
-      // Show different toast based on error type
       if (error.response?.status === 400) {
         toast.error(msg);
       } else {
@@ -68,56 +49,73 @@ const PetitionForm = ({ onSuccess }) => {
 
       console.error('Submit error:', error);
     } finally {
-      // Stop loading in both success and error cases
       setLoading(false);
     }
   };
 
   return (
-    <section className="w-full max-w-xl">
-      <div className="rounded-3xl bg-linear-to-br from-blue-950 via-blue-900 to-sky-700 p-8 shadow-2xl sm:p-10">
-        <div className="mb-8">
-          <h1 className="text-3xl font-black text-white">Petition Form</h1>
+    // ✅ h-full makes it stretch to match FansCounter height in flex row
+    <section className="w-full max-w-xl h-full">
+      <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-blue-950 via-blue-900 to-sky-700 shadow-2xl h-full flex flex-col">
+        {/* ✅ Top border — matches FansCounter Brazil border */}
+        <div className="h-2 bg-linear-to-r from-green-400 via-yellow-300 to-green-400"></div>
 
-          <p className="mt-2 text-sm text-blue-100">
-            Sign the petition to support Neymar’s return.
-          </p>
+        {/* ✅ Background Glow — matches FansCounter */}
+        <div className="absolute top-0 left-0 h-56 w-56 rounded-full bg-yellow-300 opacity-10 blur-3xl"></div>
+        <div className="absolute right-0 bottom-0 h-56 w-56 rounded-full bg-green-300 opacity-10 blur-3xl"></div>
+
+        {/* ✅ flex-1 makes content fill remaining height */}
+        <div className="relative z-10 flex flex-col flex-1 p-8 sm:p-10">
+          {/* Badge — matches FansCounter badge style */}
+          <div className="mb-6 flex justify-center">
+            <span className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-bold tracking-widest text-yellow-200 uppercase backdrop-blur">
+              Join The Movement
+            </span>
+          </div>
+
+          {/* Header */}
+          <div className="mb-8 text-center">
+            <h1 className="text-3xl font-black text-white sm:text-4xl">Petition Form</h1>
+            <p className="mt-2 text-sm text-blue-100">
+              Sign the petition to support Neymar's return.
+            </p>
+          </div>
+
+          {/* ✅ flex-1 pushes form to fill space, mt-auto keeps button at bottom */}
+          <form onSubmit={handleSubmit} className="flex flex-col flex-1 gap-4">
+            <input
+              type="text"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Your Name"
+              className="h-12 w-full rounded-xl border border-blue-400/20 bg-white/10 px-4 text-white placeholder:text-blue-100 outline-none backdrop-blur-sm focus:ring-2 focus:ring-yellow-400"
+            />
+
+            <input
+              type="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your Email"
+              className="h-12 w-full rounded-xl border border-blue-400/20 bg-white/10 px-4 text-white placeholder:text-blue-100 outline-none backdrop-blur-sm focus:ring-2 focus:ring-yellow-400"
+            />
+
+            {/* ✅ mt-auto pushes button to bottom like FansCounter share section */}
+            <div className="mt-auto pt-4">
+              <button
+                disabled={loading}
+                className="h-12 w-full rounded-xl bg-yellow-400 font-bold text-blue-950 transition hover:bg-yellow-300 disabled:opacity-50"
+              >
+                {loading ? 'Signing...' : 'Sign Petition'}
+              </button>
+
+              {message && <p className="mt-3 text-center text-sm text-white">{message}</p>}
+            </div>
+          </form>
         </div>
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Required name input */}
-          <input
-            type="text"
-            name="name"
-            required
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your Name"
-            className="h-12 w-full rounded-xl border border-blue-400/20 bg-white/10 px-4 text-white placeholder:text-blue-100 outline-none backdrop-blur-sm focus:ring-2 focus:ring-yellow-400"
-          />
-
-          {/* Required email input */}
-          <input
-            type="email"
-            name="email"
-            required
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Your Email"
-            className="h-12 w-full rounded-xl border border-blue-400/20 bg-white/10 px-4 text-white placeholder:text-blue-100 outline-none backdrop-blur-sm focus:ring-2 focus:ring-yellow-400"
-          />
-
-          {/* Disable button while request is processing */}
-          <button
-            disabled={loading}
-            className="h-12 w-full rounded-xl bg-yellow-400 font-bold text-blue-950 transition hover:bg-yellow-300 disabled:opacity-50"
-          >
-            {loading ? 'Signing...' : 'Sign Petition'}
-          </button>
-
-          {/* Show message only when message exists */}
-          {message && <p className="text-center text-sm text-white">{message}</p>}
-        </form>
       </div>
     </section>
   );
