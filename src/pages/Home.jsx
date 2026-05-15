@@ -35,10 +35,14 @@ const Home = () => {
         <Banner />
       </div>
 
-      {/* ✅ items-stretch makes both cards equal height on large screens */}
-      <div className="mb-8 flex flex-col items-center gap-8 sm:mb-16 lg:flex-row lg:items-stretch">
-        <FansCounter petitionCount={petitionCount} />
-        <PetitionForm onSuccess={handleUpdateCount} />
+      {/* ✅ w-full so both cards stretch across full width on desktop */}
+      <div className="mb-8 sm:mb-16 flex flex-col items-center gap-8 lg:flex-row lg:items-stretch lg:justify-center w-full px-4">
+        <div className="w-full max-w-xl flex">
+          <FansCounter petitionCount={petitionCount} />
+        </div>
+        <div className="w-full max-w-xl flex">
+          <PetitionForm onSuccess={handleUpdateCount} />
+        </div>
       </div>
 
       <Statistics />

@@ -28,8 +28,10 @@ const FansCounter = ({ petitionCount }) => {
   };
 
   return (
-    <section className="w-full max-w-xl">
-      <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-blue-950 via-blue-800 to-blue-700 shadow-2xl">
+    // ✅ h-full added to match PetitionForm
+    <section className="w-full max-w-xl h-full">
+      {/* ✅ h-full + flex flex-col added */}
+      <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-blue-950 via-blue-800 to-blue-700 shadow-2xl h-full flex flex-col">
         {/* Background Glow */}
         <div className="absolute top-0 left-0 h-56 w-56 rounded-full bg-yellow-300 opacity-10 blur-3xl"></div>
         <div className="absolute right-0 bottom-0 h-56 w-56 rounded-full bg-green-300 opacity-10 blur-3xl"></div>
@@ -37,7 +39,8 @@ const FansCounter = ({ petitionCount }) => {
         {/* Brazil Inspired Top Border */}
         <div className="h-2 bg-linear-to-r from-green-400 via-yellow-300 to-green-400"></div>
 
-        <div className="relative z-10 p-8 sm:p-10">
+        {/* ✅ flex-1 so this fills available space */}
+        <div className="relative z-10 flex-1 p-8 sm:p-10">
           {/* Badge */}
           <div className="mb-6 flex justify-center">
             <span className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-bold tracking-widest text-yellow-200 uppercase backdrop-blur">
@@ -67,7 +70,7 @@ const FansCounter = ({ petitionCount }) => {
           </div>
         </div>
 
-        {/* Share Section */}
+        {/* Share Section — stays at bottom naturally */}
         <div className="relative z-10 border-t border-white/10 px-8 py-6 sm:px-10">
           <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-blue-200">
             Share the Petition

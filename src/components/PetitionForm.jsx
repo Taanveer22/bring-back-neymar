@@ -63,6 +63,7 @@ const PetitionForm = ({ onSuccess }) => {
         <div className="absolute top-0 left-0 h-56 w-56 rounded-full bg-yellow-300 opacity-10 blur-3xl"></div>
         <div className="absolute right-0 bottom-0 h-56 w-56 rounded-full bg-green-300 opacity-10 blur-3xl"></div>
 
+        {/* ✅ flex-1 fills space, form pushed to bottom with mt-auto */}
         <div className="relative z-10 flex flex-col flex-1 p-8 sm:p-10">
           {/* Badge */}
           <div className="mb-6 flex justify-center">
@@ -71,28 +72,28 @@ const PetitionForm = ({ onSuccess }) => {
             </span>
           </div>
 
-          {/* ✅ Main title — big and bold like FansCounter counter number */}
+          {/* Main title */}
           <div className="mb-5 text-center">
             <h1 className="text-5xl font-black tracking-tight text-white drop-shadow-lg sm:text-6xl lg:text-7xl">
               Be Heard
             </h1>
 
-            {/* ✅ Decorative divider — matches FansCounter exactly */}
+            {/* Decorative Divider */}
             <div className="mx-auto my-5 h-1 w-24 rounded-full bg-linear-to-r from-green-300 via-yellow-300 to-green-300"></div>
 
-            {/* ✅ Subtitle — matches FansCounter subtitle style */}
+            {/* Subtitle */}
             <p className="text-sm font-semibold tracking-[0.3em] text-blue-100 uppercase sm:text-base">
               Your Voice Matters
             </p>
 
-            {/* ✅ Description — matches FansCounter description style */}
+            {/* Description */}
             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-blue-100 sm:text-base">
               Millions of fans believe Neymar Jr deserves one final chapter with Brasil. Add your
               name and be part of football history.
             </p>
           </div>
 
-          {/* Form */}
+          {/* ✅ mt-auto pushes form to bottom to match share section position */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-auto">
             <input
               type="text"
