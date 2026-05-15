@@ -1,20 +1,21 @@
 const messagePoints = [
   'Experience matters in the biggest tournaments.',
   'Big players create big moments under pressure.',
-  'Neymar still belongs on football’s biggest stage.',
+  'Neymar still belongs on  biggest stage football.',
 ];
 
 const About = () => {
   return (
-    <section className="relative overflow-hidden bg-emerald-950 py-16 sm:py-20 lg:py-28">
-      {/* Background */}
-      <div className="absolute inset-0 bg-linear-to-br from-emerald-700 via-emerald-900 to-slate-950" />
+    <section className="relative overflow-hidden bg-slate-950 py-16 sm:py-20 lg:py-28">
+      {/* ✅ Background updated  */}
+      <div className="absolute inset-0 bg-linear-to-br from-blue-950 via-slate-900 to-slate-950" />
 
-      {/* Glow Effects */}
-      <div className="absolute left-0 top-0 h-80 w-80 rounded-full bg-yellow-400/10 blur-3xl sm:h-96 sm:w-96" />
+      {/* ✅ Glow Effects */}
+      <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl" />
+      <div className="absolute -left-20 top-1/4 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
+      <div className="absolute bottom-10 right-1/4 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl" />
 
-      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl sm:h-96 sm:w-96" />
-
+      {/* Grid */}
       <div className="absolute inset-0 bg-grid-white/5" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -32,7 +33,7 @@ const About = () => {
 
           <p className="mx-auto mt-8 max-w-4xl text-base leading-8 text-slate-300 sm:text-lg md:text-xl">
             Neymar Matters is an independent fan campaign created by supporters who believe Neymar
-            should be part of Brazil’s 2026 World Cup squad.
+            should be part of Brazil's 2026 World Cup squad.
           </p>
         </div>
 
@@ -44,16 +45,14 @@ const About = () => {
               <h2 className="mb-5 text-2xl font-black uppercase text-yellow-300 sm:text-3xl md:text-4xl">
                 What This Site Does
               </h2>
-
               <div className="space-y-4">
                 <p className="text-sm leading-7 text-slate-200 sm:text-base md:text-lg md:leading-8">
                   This site allows fans to sign the petition, support the campaign, and share the
                   movement with football supporters around the world.
                 </p>
-
                 <p className="text-sm leading-7 text-slate-200 sm:text-base md:text-lg md:leading-8">
                   The blog and campaign posts explain why many fans believe Neymar still deserves a
-                  place in Brazil’s 2026 World Cup squad.
+                  place in Brazil's 2026 World Cup squad.
                 </p>
               </div>
             </div>
@@ -65,13 +64,11 @@ const About = () => {
               <h2 className="mb-5 text-2xl font-black uppercase text-white sm:text-3xl md:text-4xl">
                 Independent Fan Project
               </h2>
-
               <div className="space-y-4">
                 <p className="text-sm leading-7 text-slate-200 sm:text-base md:text-lg md:leading-8">
                   Neymar Matters is not connected to CBF, FIFA, Neymar Jr, or any football club,
                   sponsor, or broadcaster.
                 </p>
-
                 <p className="text-sm leading-7 text-slate-200 sm:text-base md:text-lg md:leading-8">
                   This is a fan-run campaign created for supporters who want their voices heard
                   before the 2026 World Cup.
@@ -86,12 +83,10 @@ const About = () => {
               <h2 className="mb-8 text-2xl font-black uppercase text-yellow-300 sm:text-3xl md:text-4xl">
                 Our Message
               </h2>
-
               <div className="space-y-5">
                 {messagePoints.map((point) => (
                   <div key={point} className="flex items-start gap-4">
                     <div className="mt-2 h-3 w-3 shrink-0 rounded-full bg-yellow-400" />
-
                     <p className="text-sm leading-7 text-slate-200 sm:text-base md:text-lg">
                       {point}
                     </p>
@@ -107,12 +102,10 @@ const About = () => {
               <h2 className="mb-5 text-2xl font-black uppercase text-blue-200 sm:text-3xl md:text-4xl">
                 Questions Or Contact
               </h2>
-
               <div className="space-y-4">
                 <p className="text-sm leading-7 text-slate-200 sm:text-base md:text-lg md:leading-8">
                   For questions, corrections, or privacy requests, please use the contact page.
                 </p>
-
                 <p className="text-sm leading-7 text-slate-200 sm:text-base md:text-lg md:leading-8">
                   Supporter information submitted through petitions or forms is handled securely and
                   used only for campaign-related communication.

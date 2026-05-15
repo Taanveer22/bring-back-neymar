@@ -117,14 +117,12 @@ const colorMap = {
     dot: 'bg-yellow-400',
     border: 'border-yellow-400/20',
   },
-
   green: {
     badge: 'border border-emerald-400/20 bg-emerald-400/10 text-emerald-300',
     icon: 'bg-linear-to-br from-emerald-400 to-emerald-500 text-white',
     dot: 'bg-emerald-400',
     border: 'border-emerald-400/20',
   },
-
   blue: {
     badge: 'border border-blue-400/20 bg-blue-400/10 text-blue-200',
     icon: 'bg-linear-to-br from-blue-400 to-blue-500 text-white',
@@ -135,14 +133,14 @@ const colorMap = {
 
 const PrivacyPolicy = () => {
   return (
-    <section className="relative overflow-hidden bg-emerald-950 py-16 sm:py-20 lg:py-28">
-      {/* Background */}
-      <div className="absolute inset-0 bg-linear-to-br from-emerald-700 via-emerald-900 to-slate-950" />
+    <section className="relative overflow-hidden bg-slate-950 py-16 sm:py-20 lg:py-28">
+      {/* ✅ Background updated*/}
+      <div className="absolute inset-0 bg-linear-to-br from-blue-950 via-slate-900 to-slate-950" />
 
-      {/* Glow Effects */}
-      <div className="absolute left-0 top-0 h-80 w-80 rounded-full bg-yellow-400/10 blur-3xl sm:h-96 sm:w-96" />
-
-      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl sm:h-96 sm:w-96" />
+      {/* ✅ Glow Effects */}
+      <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl" />
+      <div className="absolute -left-20 top-1/4 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
+      <div className="absolute bottom-10 right-1/4 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl" />
 
       {/* Grid */}
       <div className="absolute inset-0 bg-grid-white/5" />
@@ -182,7 +180,6 @@ const PrivacyPolicy = () => {
         <div className="space-y-6 sm:space-y-8">
           {sections.map((section) => {
             const colors = colorMap[section.color];
-
             return (
               <div
                 key={section.id}
@@ -196,14 +193,12 @@ const PrivacyPolicy = () => {
                     >
                       {section.icon}
                     </div>
-
                     <div className="flex flex-wrap items-center gap-3">
                       <span
                         className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest ${colors.badge}`}
                       >
                         Section {section.id}
                       </span>
-
                       <h2 className="text-lg font-black uppercase text-white sm:text-xl md:text-2xl">
                         {section.title}
                       </h2>
@@ -218,7 +213,6 @@ const PrivacyPolicy = () => {
                       {section.items.map((item) => (
                         <li key={item} className="flex items-start gap-4">
                           <span className={`mt-2 h-3 w-3 shrink-0 rounded-full ${colors.dot}`} />
-
                           <p className="text-sm leading-8 text-slate-200 sm:text-base md:text-lg">
                             {item}
                           </p>
@@ -262,12 +256,10 @@ const PrivacyPolicy = () => {
                 />
               </svg>
             </div>
-
             <div>
               <h3 className="mb-2 text-lg font-black uppercase text-white">
                 Still Have Questions?
               </h3>
-
               <p className="text-sm leading-8 text-slate-200 sm:text-base">
                 If you have questions about your data or anything on this page, please contact us
                 through the contact page and we will respond as soon as possible.

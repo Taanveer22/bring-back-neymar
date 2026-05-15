@@ -23,7 +23,8 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="max-lg:collapse bg-yellow-400 text-black shadow-sm w-full rounded-md">
+      {/* ✅ Brazil gradient — green to yellow to green like the jersey */}
+      <div className="max-lg:collapse bg-linear-to-r from-green-600 via-yellow-400 to-green-600 text-black shadow-lg w-full rounded-md">
         <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
         <label
           htmlFor="navbar-1-toggle"
@@ -47,18 +48,19 @@ const Navbar = () => {
                 />
               </svg>
             </label>
-            <button className="btn btn-ghost text-xl">Bring Back Neymar</button>
+            <button className="btn btn-ghost text-xl font-black">Bring Back Neymar</button>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{links}</ul>
+            <ul className="menu menu-horizontal px-1 font-semibold">{links}</ul>
           </div>
           <div className="navbar-end hidden sm:flex">
-            <button className="btn btn-ghost text-xl"> Mission Hexa 2026</button>
+            <button className="btn btn-ghost text-xl font-black">Mission Hexa 2026</button>
           </div>
         </div>
 
-        <div className="collapse-content lg:hidden z-1">
-          <ul className="menu">{links}</ul>
+        {/* ✅ Mobile dropdown also gets the gradient */}
+        <div className="collapse-content lg:hidden z-1 bg-linear-to-b from-yellow-400 to-green-600">
+          <ul className="menu font-semibold">{links}</ul>
         </div>
       </div>
     </div>
