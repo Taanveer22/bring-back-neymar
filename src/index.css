@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 @plugin "daisyui";
 
+html {
+  scroll-behavior: smooth;
+}
 a.active {
-  background-color: rgb(8, 157, 8);
+  background-color: rgb(11, 71, 153);
 }

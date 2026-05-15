@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 
 const Root = () => {
   return (
-    <div>
+    <>
       <div className="mb-8 sm:mb-16">
         <Navbar></Navbar>
       </div>
@@ -14,7 +14,7 @@ const Root = () => {
       <div className="">
         <Footer></Footer>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -29,24 +29,29 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <>
       {/* Hero banner section */}
-      <div className="mb-8 sm:mb-16">
+      <section className="mb-8 sm:mb-16">
         <Banner />
-      </div>
+      </section>
 
       {/* ✅ w-full so both cards stretch across full width on desktop */}
-      <div className="mb-8 sm:mb-16 flex flex-col items-center gap-8 lg:flex-row lg:items-stretch lg:justify-center w-full px-4">
+      <section
+        id="petition-section"
+        className="mb-8 sm:mb-16 flex flex-col items-center gap-8 lg:flex-row lg:items-stretch lg:justify-center w-full px-4"
+      >
         <div className="w-full max-w-xl flex">
           <FansCounter petitionCount={petitionCount} />
         </div>
         <div className="w-full max-w-xl flex">
           <PetitionForm onSuccess={handleUpdateCount} />
         </div>
-      </div>
+      </section>
 
-      <Statistics />
-    </div>
+      <section>
+        <Statistics />
+      </section>
+    </>
   );
 };
 

@@ -17,10 +17,10 @@ const Banner = () => {
           </p>
 
           <a
-            href="#"
+            href="#petition-section"
             className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white rounded-lg bg-blue-700 hover:bg-blue-800 w-fit"
           >
-            Sign Petition
+            Sign Petition Form
             <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
