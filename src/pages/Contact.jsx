@@ -34,20 +34,19 @@ const Contact = () => {
 
     try {
       const response = await axios.post(`${BASE_URL}/api/contact`, form);
-      console.log(response.data);
-      if (response.data) {
-        toast.success('Message Sent');
+
+      if (response.data.success) {
+        toast.success('Message sent successfully! 🎉'); // ✅ success toast
+        setForm({ name: '', email: '', message: '' }); // ✅ reset form
+        setChecked(false); // ✅ reset checkbox
+      } else {
+        toast.error(response.data.message); // ✅ backend error toast
       }
-      setForm({
-        name: '',
-        email: '',
-        message: '',
-      });
     } catch (error) {
       console.log(error);
+      toast.error('Something went wrong. Please try again!');
+      // ✅ network error toast
     }
-
-    console.log(form);
   };
 
   return (
