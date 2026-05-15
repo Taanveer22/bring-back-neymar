@@ -54,35 +54,46 @@ const PetitionForm = ({ onSuccess }) => {
   };
 
   return (
-    // ✅ h-full makes it stretch to match FansCounter height in flex row
     <section className="w-full max-w-xl h-full">
       <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-blue-950 via-blue-900 to-sky-700 shadow-2xl h-full flex flex-col">
-        {/* ✅ Top border — matches FansCounter Brazil border */}
+        {/* Top border */}
         <div className="h-2 bg-linear-to-r from-green-400 via-yellow-300 to-green-400"></div>
 
-        {/* ✅ Background Glow — matches FansCounter */}
+        {/* Background Glow */}
         <div className="absolute top-0 left-0 h-56 w-56 rounded-full bg-yellow-300 opacity-10 blur-3xl"></div>
         <div className="absolute right-0 bottom-0 h-56 w-56 rounded-full bg-green-300 opacity-10 blur-3xl"></div>
 
-        {/* ✅ flex-1 makes content fill remaining height */}
         <div className="relative z-10 flex flex-col flex-1 p-8 sm:p-10">
-          {/* Badge — matches FansCounter badge style */}
+          {/* Badge */}
           <div className="mb-6 flex justify-center">
             <span className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-bold tracking-widest text-yellow-200 uppercase backdrop-blur">
               Join The Movement
             </span>
           </div>
 
-          {/* Header */}
-          <div className="mb-8 text-center">
-            <h1 className="text-3xl font-black text-white sm:text-4xl">Petition Form</h1>
-            <p className="mt-2 text-sm text-blue-100">
-              Sign the petition to support Neymar's return.
+          {/* ✅ Main title — big and bold like FansCounter counter number */}
+          <div className="mb-5 text-center">
+            <h1 className="text-5xl font-black tracking-tight text-white drop-shadow-lg sm:text-6xl lg:text-7xl">
+              Be Heard
+            </h1>
+
+            {/* ✅ Decorative divider — matches FansCounter exactly */}
+            <div className="mx-auto my-5 h-1 w-24 rounded-full bg-linear-to-r from-green-300 via-yellow-300 to-green-300"></div>
+
+            {/* ✅ Subtitle — matches FansCounter subtitle style */}
+            <p className="text-sm font-semibold tracking-[0.3em] text-blue-100 uppercase sm:text-base">
+              Your Voice Matters
+            </p>
+
+            {/* ✅ Description — matches FansCounter description style */}
+            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-blue-100 sm:text-base">
+              Millions of fans believe Neymar Jr deserves one final chapter with Brasil. Add your
+              name and be part of football history.
             </p>
           </div>
 
-          {/* ✅ flex-1 pushes form to fill space, mt-auto keeps button at bottom */}
-          <form onSubmit={handleSubmit} className="flex flex-col flex-1 gap-4">
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-auto">
             <input
               type="text"
               name="name"
@@ -103,17 +114,14 @@ const PetitionForm = ({ onSuccess }) => {
               className="h-12 w-full rounded-xl border border-blue-400/20 bg-white/10 px-4 text-white placeholder:text-blue-100 outline-none backdrop-blur-sm focus:ring-2 focus:ring-yellow-400"
             />
 
-            {/* ✅ mt-auto pushes button to bottom like FansCounter share section */}
-            <div className="mt-auto pt-4">
-              <button
-                disabled={loading}
-                className="h-12 w-full rounded-xl bg-yellow-400 font-bold text-blue-950 transition hover:bg-yellow-300 disabled:opacity-50"
-              >
-                {loading ? 'Signing...' : 'Sign Petition'}
-              </button>
+            <button
+              disabled={loading}
+              className="h-12 w-full rounded-xl bg-yellow-400 font-bold text-blue-950 transition hover:bg-yellow-300 disabled:opacity-50"
+            >
+              {loading ? 'Signing...' : 'Sign Petition'}
+            </button>
 
-              {message && <p className="mt-3 text-center text-sm text-white">{message}</p>}
-            </div>
+            {message && <p className="text-center text-sm text-white">{message}</p>}
           </form>
         </div>
       </div>
